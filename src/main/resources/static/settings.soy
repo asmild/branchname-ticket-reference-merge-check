@@ -1,0 +1,234 @@
+{namespace io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck}
+/**
+ * A branch needs a valid issue key.
+ * A branch can only be created, merged, pushed if the name contains a valid issue key.
+ * Issue key search settings.
+ * @param config
+ * @param? errors
+ */
+{template .settings}
+        <h3>{getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.keySearch.title')}:</h3>
+        <hr color="#ebecf0">
+        {call aui.form.textField}
+            {param id: 'issueKeyEscapeCharacter' /}
+            {param value: $config['issueKeyEscapeCharacter'] ?: '!' /}
+            {param labelContent: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.issueKeyEscapeCharacter.label') /}
+            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.issueKeyEscapeCharacter.desc') /}
+            {param errorTexts: $errors ? $errors['issueKeyEscapeCharacter'] : null /}
+        {/call}
+
+        {call aui.form.textField}
+            {param id: 'issueKeyRegex' /}
+            {param value: $config['issueKeyRegex'] /}
+            {param labelContent: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.issueKeyRegex.label') /}
+            {param errorTexts: $errors ? $errors['issueKeyRegex'] : null /}
+            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.issueKeyRegex.desc') /}
+        {/call}
+
+        <h3>{getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.validationSettings.title')}:</h3>
+        <hr color="#ebecf0">
+
+        {call aui.form.checkboxField}
+            {param legendContent: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.ticketsValidation.checkbox.legend') /}
+            {param fields: [[
+                    'id': 'ticketsValidationEnabled',
+                    'labelText': getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.ticketsValidation.checkbox.label'),
+                    'isChecked': $config['ticketsValidationEnabled']
+                    ]] /}
+            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.ticketsValidation.desc') /}
+        {/call}
+//
+//        {call aui.form.radioField}
+//            {param id : 'ticketsValidation' /}
+//            {param legendContent: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.ticketsValidation.legend') /}
+//            {param fields: [[
+//                    'id' : 'enabled',
+//                    'value' : true,
+//                    'labelText': getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.ticketsValidation.options.enabled.label'),
+//                    'isChecked': $config['ticketsValidation']
+//            ],[
+//                    'id' : 'disabled',
+//                    'value' : false,
+//                    'labelText': getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.ticketsValidation.options.disabled.label'),
+//                    'isChecked': $config['ticketsValidation']
+//            ]] /}
+//            {param isRequired: true /}
+//            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.ticketsValidation.desc') /}
+//        {/call}
+
+        {call aui.form.checkboxField}
+            {param legendContent: '' /}
+            {param fields: [[
+                    'id': 'multipleKeys',
+                    'labelText': getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.ticketsValidation.multipleKeys.label'),
+                    'isChecked': $config['multipleKeys']
+                    ]] /}
+            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.ticketsValidation.multipleKeys.desc') /}
+        {/call}
+
+        <h3>{getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.exemptions.title')}</h3>
+        <hr color="#ebecf0">
+        {call aui.form.checkboxField}
+            {param legendContent: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.sourceBranchException.checkbox.legend') /}
+            {param fields: [[
+                    'id': 'sourceBranchExceptionEnabled',
+                    'labelText': getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.sourceBranchException.checkbox.label'),
+                    'isChecked': $config['sourceBranchExceptionEnabled']
+                    ]] /}
+        {/call}
+
+        {call aui.form.textField}
+            {param id: 'sourceBranchExceptionRegex' /}
+            {param value: $config['sourceBranchExceptionRegex'] /}
+            {param errorTexts: $errors ? $errors['sourceBranchExceptionRegex'] : null /}
+            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.sourceBranchExceptionRegex.desc')/}
+
+        {/call}
+
+        {call aui.form.checkboxField}
+            {param legendContent: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.targetBranchException.checkbox.legend') /}
+            {param fields: [[
+                    'id': 'targetBranchExceptionEnabled',
+                    'labelText': getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.targetBranchException.checkbox.label'),
+                    'isChecked': $config['targetBranchExceptionEnabled']
+                    ]] /}
+        {/call}
+
+        {call aui.form.textField}
+            {param id: 'targetBranchExceptionRegex' /}
+            {param value: $config['targetBranchExceptionRegex'] /}
+            {param errorTexts: $errors ? $errors['targetBranchExceptionRegex'] : null /}
+            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.targetBranchExceptionRegex.desc')/}
+        {/call}
+
+        {call aui.form.checkboxField}
+            {param legendContent: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.usersException.checkbox.legend') /}
+            {param fields: [[
+                    'id': 'usersExceptionEnabled',
+                    'labelText': getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.usersException.checkbox.label'),
+                    'isChecked': $config['usersExceptionEnabled']
+                    ]] /}
+        {/call}
+
+        {call aui.form.textField}
+            {param id: 'usersExceptionGroups' /}
+            {param value: $config['usersExceptionGroups'] /}
+            {param errorTexts: $errors ? $errors['usersExceptionGroups'] : null /}
+            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.usersExceptionGroups.desc')/}
+
+        {/call}
+
+//    conditionSyntaxSkipRegex
+        //:
+        //""
+        //issue.key.escape.character.id
+        //:
+        //"!"
+        //mergeCheckIssueKeyRegEx
+        //:
+        //"dfdf"
+        //mergeTextBranchCheckRegEx
+        //:
+        //""
+        //mergeTextExceptionGroup
+        //:
+        //""
+        //mergeTextFromBranchCheckRegEx
+        //:
+        //""
+        //mergeTextIssueStatusCheckMessage
+        //:
+        //""
+        //mergeTextIssueStatusCheckRegEx
+        //:
+        //""
+        //mergeTextJQLQuery
+        //:
+        //""
+        //mergeTextJQLQueryMessage
+        //:
+        //""
+        //mergeTextSyntaxCheckMessage
+        //:
+        //""
+        //mergeTextSyntaxCheckRegEx
+        //:
+        //""
+        //searchID
+        //:
+        //"commits"
+{/template}
+<!--        example https://github.com/palantir/stashbot/blob/master/src/main/resources/static/repository-configuration-panel.soy -->
+<!--        example https://gist.github.com/GeoffWilliams/936f56415c68bc9e65777bd1beea551c -->
+
+/*A branch needs a valid issue key
+
+A branch can only be created, merged, pushed is the name contains a valid issue key.
+Issue key search settings
+ * Search in
+ *
+*/
+
+
+//  <h3>Pull requests</h3>
+//        <hr color="#ebecf0">
+//<!--        <div class="field-group">-->
+//
+//                {call aui.form.checkboxField}
+//                    {param legendContent: 'Validation' /}
+//                    {param fields: [[
+//                            'id': 'validationEnabled',
+//                            'labelText': 'Enable Puppet validation',
+//                            'isChecked': $config['validationEnabled']
+//                            ]] /}
+//                    {param descriptionText: 'The push will be rejected if validation fails.' /}
+//                {/call}
+//
+//                {call aui.form.checkboxField}
+//                    {param legendContent: 'Linting' /}
+//                    {param fields: [[
+//                            'id': 'lintEnabled',
+//                    'labelText': 'Enable Puppet linting',
+//                    'isChecked': $config['lintEnabled']
+//                            ]] /}
+//                    {param descriptionText: 'The push will be rejected if linting fails.' /}
+//                {/call}
+//                {call aui.form.checkboxField}
+//                    {param legendContent: 'Linting' /}
+//                    {param fields: [[
+//                            'id': 'yamlLintEnabled',
+//                    'labelText': 'Enable linting on yaml files',
+//                    'isChecked': $config['yamlLintEnabled']
+//                            ]] /}
+//                    {param descriptionText: 'The push will be rejected if linting fails on yaml files.' /}
+//                {/call}
+//<!--        </div>-->
+//<!--        <div class="field-group">-->
+
+/*
+ * Configs
+ * Validate:
+  * - all found tickets should be valid
+ *  - at least one should be valid
+ *  - do not validate tickets
+ * Issue status:
+ * - Enable the issue status check based on regular expression
+ *      - The issue status must match the given regular expression. If the issue status do not match the regular expression, the pull request will be blocked (Backward compatibility: Also a status list is still possible. As separator the pipe "|" should be used instead of a comma ",")
+ *      - This message is shown to the user, if the status check was not successfully. The keywords %key and %status can be used to display the affected issue-key and the current status of the issue.
+ *
+ * JQL Check
+JQL check
+All found issues reference must match the given JQL
+
+At least one issue reference must match the given JQL
+The given JQL query must return a positive count of issues. If the query do not return a issue, the pull request will be blocked. In the JQL you can use the keyword $currentUser (e.g. assignee=$currentUser)
+This message is shown to the user, if the JQL check was not successfully (you can use the keys %jql %key, %hash, %branch and %pr )
+
+ *
+ * Pull requests:
+ *  * Enable check for target branches of a pull request - Only pull requests with target branches matching this regular expression are checked.
+ *  * Enable check for source branches of a pull request - Only pull requests with source branches matching this regular expression are checked.
+ * Exception
+ *  * Enable exception handling for users - In exception cases, users in the given groups can merge a pull-request without evaluating hook checks. Multiple groups can be separated via comma (group1,group2)
+ * Source branch to check
+ */
