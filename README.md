@@ -46,15 +46,6 @@ We welcome contributions to enhance the Branchname Jira Key Merge-check for Bitb
 
 See the [CHANGELOG.md](CHANGELOG.md) file for the version history and changes made in each release.
 
-## Acknowledgements
-
-We would like to thank the following individuals for their contributions to this plugin:
-
-- John Doe (Feature development)
-- Jane Smith (Bug fixes)
-
 ## About
 
-The Jira Key in Branchname Merge Check Plugin is developed and maintained by [Your Company Name](https://www.example.com/). We specialize in providing high-quality plugins and solutions for Atlassian products.
-
-![Your Company Logo](logo.png)
+Branchname Jira Key Merge-check for Bitbucket is developed and maintained by [@asmild](https://github.com/asmild).
