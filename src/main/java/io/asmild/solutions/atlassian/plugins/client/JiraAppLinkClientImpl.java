@@ -77,7 +77,7 @@ public class JiraAppLinkClientImpl implements JiraAppLinkClient {
             } else if (e instanceof ResponseException || e instanceof CredentialsRequiredException) {
                 logger.error(e.getMessage());
                 throw new ApplicationConnectionErrorException("Jira connection error occurred");
-            }  else {
+            } else {
                 throw e;
             }
         }
