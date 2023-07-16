@@ -44,7 +44,6 @@ public class BranchNameTicketReferenceMergeCheck implements RepositoryMergeCheck
     public RepositoryHookResult preUpdate(@Nonnull PreRepositoryHookContext context,
                                           @Nonnull PullRequestMergeHookRequest request) {
 
-        boolean debug = true;
         String ticketRegex = context.getSettings().getString("issueKeyRegex", "");
         String escapeCharacter = context.getSettings().getString("issueKeyEscapeCharacter", "");
         boolean ticketsValidationEnabled = context.getSettings().getBoolean("ticketsValidationEnabled", false);
@@ -110,7 +109,7 @@ public class BranchNameTicketReferenceMergeCheck implements RepositoryMergeCheck
             return RepositoryHookResult.accepted();
         }
 
-        if (issuesIds.size() > 0){
+        if (!issuesIds.isEmpty()){
             if (issuesIds.size() > 1  && !multipleKeysAllowed) {
                 return RepositoryHookResult.rejected("Multiple Jira keys discovered", "Only one Jira key is allowed, but " + issuesIds.size() + " discovered");
             }
@@ -120,7 +119,9 @@ public class BranchNameTicketReferenceMergeCheck implements RepositoryMergeCheck
 
                 for (String issueId : issuesIds) {
                     try {
-                        JiraIssue jiraIssue = new JiraIssue(jiraClient.getTicketDetails(issueId));
+                        // TODO: check issue status
+//                        JiraIssue jiraIssue = new JiraIssue(jiraClient.getTicketDetails(issueId));
+                        jiraClient.getTicketDetails(issueId);
                     } catch (Exception e) {
                         if (e instanceof ApplicationConnectionErrorException) {
                             rejects.add(e.getMessage());
