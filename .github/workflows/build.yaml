@@ -1,5 +1,5 @@
 # .github/workflows/build.yml
-name: Node Build.
+name: Compiler
 
 on: [push]
 
