@@ -16,13 +16,6 @@ jobs:
       - name: Locate target filws
         run: ls -l target
 
-
-  publish:
-    runs-on: self-hosted
-    steps:
-      - name: Locate target filws
-        run: ls -l target
-
       - name: Publish to GitHub Packages
         run: mvn --batch-mode deploy
         env:
