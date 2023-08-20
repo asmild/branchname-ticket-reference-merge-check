@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class TicketReference {
+
+    private TicketReference() {}
     public static List<String> getIds(String branchName, String regex) {
         List<String> issuesIds = new ArrayList<>();
 

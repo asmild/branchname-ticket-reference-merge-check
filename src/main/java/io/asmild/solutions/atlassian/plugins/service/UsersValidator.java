@@ -6,6 +6,7 @@ import com.atlassian.bitbucket.user.ApplicationUser;
 
 public class UsersValidator
 {
+    private UsersValidator() {}
     public static boolean isUserExcluded(
             ApplicationUser currentUser,
             String usersExceptionGroups) {
