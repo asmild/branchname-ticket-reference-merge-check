@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/}
+        run: echo Running on branch ${GITHUB_REF##*/}
       - name: Run atlas-compile
         run: atlas-package
       - name: Locate target filws
