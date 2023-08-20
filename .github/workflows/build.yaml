@@ -4,7 +4,7 @@ name: Compiler
 on: [push]
 
 jobs:
-  package:
+  mailBuild:
     runs-on: self-hosted
 
     steps:
