@@ -8,13 +8,17 @@
     <packaging>atlassian-plugin</packaging>
 
     <name>Branchname Jira Key Merge-check Plugin for Bitbucket</name>
-    <description>Agit init</description>
+    <description>A Bitbucket merge check plugin that enforces the presence of Jira issue keys in branch names, helping ensure proper referencing and tracking of issues.</description>
 
     <organization>
         <name>Ildar Asmandiiarov</name>
         <url></url>
     </organization>
-
+    <scm>
+        <connection>scm:git:git@github.com:asmild/branchname-ticket-reference-merge-check.git</connection>
+        <developerConnection>scm:git:git@github.com:asmild/branchname-ticket-reference-merge-check.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
