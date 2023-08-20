@@ -8,7 +8,7 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v1
       - name: Branch name
         run: echo running on branch ${GITHUB_REF##*/}
       - name: Run atlas-compile
