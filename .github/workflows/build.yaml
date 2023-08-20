@@ -1,0 +1,13 @@
+# .github/workflows/build.yml
+name: Node Build.
+
+on: [push]
+
+jobs:
+  mainbuild:
+    runs-on: self-hosted
+
+  steps:
+    - uses: actions/checkout@v1
+    - name: Run atlas-compile
+      run: atlas-compile
