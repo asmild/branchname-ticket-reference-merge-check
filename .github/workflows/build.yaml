@@ -12,4 +12,6 @@ jobs:
       - name: Branch name
         run: echo running on branch ${GITHUB_REF##*/}
       - name: Run atlas-compile
-        run: ls -la
+        run: atlas-compile
+      - name: Locate target filws
+        run: ls -l target
