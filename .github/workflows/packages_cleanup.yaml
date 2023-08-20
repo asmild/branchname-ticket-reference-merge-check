@@ -1,0 +1,15 @@
+name: Cleanup packages
+on:
+  schedule:
+   - cron: '0 0 * * 0'
+
+jobs:
+  cleanup-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/delete-package-versions@v4
+        with:
+          package-name: 'io.asmild.solutions.atlassian.plugins.branchname-ticket-reference-merge-check'
+          package-type: 'pom'
+          min-versions-to-keep: 4
+          delete-only-pre-release-versions: "true"

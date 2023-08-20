@@ -10,17 +10,15 @@ import com.atlassian.bitbucket.hook.repository.RepositoryMergeCheck;
 import com.atlassian.bitbucket.auth.AuthenticationContext;
 import com.atlassian.bitbucket.pull.PullRequest;
 import com.atlassian.bitbucket.repository.Ref;
-import com.atlassian.bitbucket.user.ApplicationUser;
 
-import io.asmild.solutions.atlassian.plugins.exceptions.ApplicationConnectionErrorException;
-import io.asmild.solutions.atlassian.plugins.exceptions.ApplicationLinkNotConfiguredException;
-import io.asmild.solutions.atlassian.plugins.exceptions.JiraTicketNotFoundException;
-import io.asmild.solutions.atlassian.plugins.models.JiraIssue;
+import io.asmild.solutions.atlassian.plugins.service.BranchNameValidator;
+import io.asmild.solutions.atlassian.plugins.service.JiraKeyValidator;
+import io.asmild.solutions.atlassian.plugins.service.TicketReference;
 
+import io.asmild.solutions.atlassian.plugins.service.UsersValidator;
 import org.springframework.stereotype.Component;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -63,10 +61,8 @@ public class BranchNameTicketReferenceMergeCheck implements RepositoryMergeCheck
             ticketRegex = "([A-Z][A-Z\\d_]*)-(\\d+)";
         }
 
-//        Get rid of escape character field - leave default - !
+//      Get rid of escape character field - leave default - !
         String escapedRegex = escapeCharacter + ticketRegex;
-
-
 
 //      Getting branch name to merge from
         PullRequest pullRequest = request.getPullRequest();
@@ -74,35 +70,25 @@ public class BranchNameTicketReferenceMergeCheck implements RepositoryMergeCheck
         String branchName = fromRef.getDisplayId();
 
 //      Discovering keyId
-        Pattern jiraTicketPattern = Pattern.compile(ticketRegex);
-        Matcher jiraTicketMatcher = jiraTicketPattern.matcher(branchName);
+        issuesIds = TicketReference.getIds(branchName,ticketRegex);
+
         Pattern escappedJiraTicketPattern = Pattern.compile(escapedRegex);
         Matcher escapedJiraTicketMatcher = escappedJiraTicketPattern.matcher(branchName);
-
-        while (jiraTicketMatcher.find()) {
-            issuesIds.add(jiraTicketMatcher.group());
-        }
 
         while (escapedJiraTicketMatcher.find()) {
             issuesIds.removeIf(item -> escapedJiraTicketMatcher.group().contains(item));
         }
 
         if (sourceBranchExceptionEnabled) {
-            Pattern sourceBranchExceptionPattern = Pattern.compile(sourceBranchExceptionRegex);
-            Matcher sourceBranchxceptionMatcher = sourceBranchExceptionPattern.matcher(branchName);
-            excludedBySourceBranch = sourceBranchxceptionMatcher.find();
+            excludedBySourceBranch = BranchNameValidator.isExceptionalBranch(branchName,sourceBranchExceptionRegex);
         }
 
         if (targetBranchExceptionEnabled) {
-            Pattern targetBranchExceptionPattern = Pattern.compile(targetBranchExceptionRegex);
-            Matcher targetBranchxceptionMatcher = targetBranchExceptionPattern.matcher(branchName);
-            excludedByTragetBranch = targetBranchxceptionMatcher.find();
+            excludedByTragetBranch = BranchNameValidator.isExceptionalBranch(branchName,targetBranchExceptionRegex);
         }
 
         if (usersExceptionEnabled) {
-            ApplicationUser currentUser = authenticationContext.getCurrentUser();
-            List<String> usersList = Arrays.asList(usersExceptionGroups.split(","));
-            usersException = usersList.contains(currentUser.getName());
+            usersException = UsersValidator.isUserExcluded(authenticationContext.getCurrentUser(),usersExceptionGroups);
         }
 
         if (excludedBySourceBranch || excludedByTragetBranch || usersException ) {
@@ -117,25 +103,7 @@ public class BranchNameTicketReferenceMergeCheck implements RepositoryMergeCheck
             if (ticketsValidationEnabled) {
                 List<String> rejects = new ArrayList<>();
 
-                for (String issueId : issuesIds) {
-                    try {
-                        // TODO: check issue status
-//                        JiraIssue jiraIssue = new JiraIssue(jiraClient.getTicketDetails(issueId));
-                        jiraClient.getTicketDetails(issueId);
-                    } catch (Exception e) {
-                        if (e instanceof ApplicationConnectionErrorException) {
-                            rejects.add(e.getMessage());
-                            break;
-                        } else if (e instanceof JiraTicketNotFoundException) {
-                            rejects.add("ticket id '" + issueId + "' is not valid");
-                        } else if (e instanceof ApplicationLinkNotConfiguredException) {
-                            rejects.add(e.getMessage());
-                            break;
-                        }else {
-                            rejects.add("Error occurred: " + e.getMessage());
-                        }
-                    }
-                }
+                rejects = JiraKeyValidator.areJiraTicketsValid(issuesIds,jiraClient);
 
                 if (!rejects.isEmpty()) {
                     return RepositoryHookResult.rejected("Unable to validate Jira ticket", String.join(", ", rejects));

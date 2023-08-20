@@ -1,0 +1,16 @@
+# .github/workflows/build.yml
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  mailBuild:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run atlas-release
+        run: atlas-release

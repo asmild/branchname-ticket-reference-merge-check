@@ -16,7 +16,7 @@
 
     <repository-merge-check key="${project.artifactId}-plugin" name="Jira ticket reference in branch name" class="bean:BranchNameTicketReferenceMergeCheck">
         <description>Enforces that source branch name must have a Jira key references before it can be merged.</description>
-        <icon>icons/pluginIcon.png</icon>
+        <icon>images/pluginLogo2.png</icon>
         <scopes>
             <scope>project</scope>
             <scope>repository</scope>
