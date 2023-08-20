@@ -4,7 +4,7 @@ name: Compiler
 on: [push]
 
 jobs:
-  build:
+  package:
     runs-on: self-hosted
 
     steps:
@@ -17,3 +17,8 @@ jobs:
         run: ls -l target
 
 
+  publish:
+    runs-on: self-hosted
+    steps:
+      - name: Locate target filws
+        run: ls -l target
