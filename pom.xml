@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.asmild.solutions.atlassian.plugins</groupId>
-    <artifactId>branchname-ticket-reference-merge-check</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <groupId>io.asmild.atlas.plugins</groupId>
+    <artifactId>ticket-ref-merge-check</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>atlassian-plugin</packaging>
 
-    <name>Branchname Jira Key Merge-check Plugin for Bitbucket</name>
+    <name>Branchname Jira Ticket Reference Merge-check Plugin for Bitbucket</name>
     <description>A Bitbucket merge check plugin that enforces the presence of Jira issue keys in branch names, helping ensure proper referencing and tracking of issues.</description>
 
     <organization>
