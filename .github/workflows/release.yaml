@@ -12,5 +12,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: 'main'
+      - name: Clean before release
+        run: mvn release:clean
       - name: Run atlas-release
         run: mvn --batch-mode -DuseGitHubPackages=true release:prepare release:perform -Darguments="-Dmaven.javadoc.skip=true -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/asmild/branchname-ticket-reference-merge-check"
