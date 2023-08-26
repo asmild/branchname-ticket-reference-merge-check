@@ -49,3 +49,6 @@ See the [CHANGELOG.md](CHANGELOG.md) file for the version history and changes ma
 ## About
 
 Branchname Jira Key Merge-check for Bitbucket is developed and maintained by [@asmild](https://github.com/asmild).
+
+## Security and privacy
+See the [PRIVACY](PRIVACY) file
