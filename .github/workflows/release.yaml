@@ -13,4 +13,4 @@ jobs:
         with:
           ref: 'main'
       - name: Run atlas-release
-        run: mvn --batch-mode -DuseGitHubPackages=true release:prepare release:perform -Darguments="-DaltDeploymentRepository=github::default::https://maven.pkg.github.com/asmild/branchname-ticket-reference-merge-check"
+        run: mvn --batch-mode -DuseGitHubPackages=true release:prepare release:perform -Darguments="-Dmaven.javadoc.skip=true -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/asmild/branchname-ticket-reference-merge-check"
