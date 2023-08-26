@@ -22,7 +22,7 @@
             <scope>repository</scope>
         </scopes>
         <config-form key="${project.artifactId}-config" name="Jira ticket reference in branch name config" >
-            <view>io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.settings</view>
+            <view>io.asmild.atlas.plugins.branchnameticketreferencemergecheck.settings</view>
             <directory location="/static/"/>
         </config-form>
     </repository-merge-check>

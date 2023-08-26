@@ -1,4 +1,4 @@
-{namespace io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck}
+{namespace io.asmild.atlas.plugins.branchnameticketreferencemergecheck}
 /**
  * A branch needs a valid issue key.
  * A branch can only be created, merged, pushed if the name contains a valid issue key.
@@ -7,54 +7,54 @@
  * @param? errors
  */
 {template .settings}
-        <h3>{getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.keySearch.title')}:</h3>
+        <h3>{getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.keySearch.title')}:</h3>
         <hr color="#ebecf0">
         {call aui.form.textField}
             {param id: 'issueKeyEscapeCharacter' /}
             {param value: $config['issueKeyEscapeCharacter'] ?: '!' /}
-            {param labelContent: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.issueKeyEscapeCharacter.label') /}
-            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.issueKeyEscapeCharacter.desc') /}
+            {param labelContent: getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.issueKeyEscapeCharacter.label') /}
+            {param descriptionText: getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.issueKeyEscapeCharacter.desc') /}
             {param errorTexts: $errors ? $errors['issueKeyEscapeCharacter'] : null /}
         {/call}
 
         {call aui.form.textField}
             {param id: 'issueKeyRegex' /}
             {param value: $config['issueKeyRegex'] /}
-            {param labelContent: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.issueKeyRegex.label') /}
+            {param labelContent: getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.issueKeyRegex.label') /}
             {param errorTexts: $errors ? $errors['issueKeyRegex'] : null /}
-            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.issueKeyRegex.desc') /}
+            {param descriptionText: getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.issueKeyRegex.desc') /}
         {/call}
 
-        <h3>{getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.validationSettings.title')}:</h3>
+        <h3>{getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.validationSettings.title')}:</h3>
         <hr color="#ebecf0">
 
         {call aui.form.checkboxField}
-            {param legendContent: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.ticketsValidation.checkbox.legend') /}
+            {param legendContent: getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.ticketsValidation.checkbox.legend') /}
             {param fields: [[
                     'id': 'ticketsValidationEnabled',
-                    'labelText': getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.ticketsValidation.checkbox.label'),
+                    'labelText': getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.ticketsValidation.checkbox.label'),
                     'isChecked': $config['ticketsValidationEnabled']
                     ]] /}
-            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.ticketsValidation.desc') /}
+            {param descriptionText: getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.ticketsValidation.desc') /}
         {/call}
 
         {call aui.form.checkboxField}
             {param legendContent: '' /}
             {param fields: [[
                     'id': 'multipleKeys',
-                    'labelText': getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.ticketsValidation.multipleKeys.label'),
+                    'labelText': getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.ticketsValidation.multipleKeys.label'),
                     'isChecked': $config['multipleKeys']
                     ]] /}
-            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.ticketsValidation.multipleKeys.desc') /}
+            {param descriptionText: getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.ticketsValidation.multipleKeys.desc') /}
         {/call}
 
-        <h3>{getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.exemptions.title')}</h3>
+        <h3>{getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.exemptions.title')}</h3>
         <hr color="#ebecf0">
         {call aui.form.checkboxField}
-            {param legendContent: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.sourceBranchException.checkbox.legend') /}
+            {param legendContent: getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.sourceBranchException.checkbox.legend') /}
             {param fields: [[
                     'id': 'sourceBranchExceptionEnabled',
-                    'labelText': getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.sourceBranchException.checkbox.label'),
+                    'labelText': getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.sourceBranchException.checkbox.label'),
                     'isChecked': $config['sourceBranchExceptionEnabled']
                     ]] /}
         {/call}
@@ -63,15 +63,15 @@
             {param id: 'sourceBranchExceptionRegex' /}
             {param value: $config['sourceBranchExceptionRegex'] /}
             {param errorTexts: $errors ? $errors['sourceBranchExceptionRegex'] : null /}
-            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.sourceBranchExceptionRegex.desc')/}
+            {param descriptionText: getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.sourceBranchExceptionRegex.desc')/}
 
         {/call}
 
         {call aui.form.checkboxField}
-            {param legendContent: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.targetBranchException.checkbox.legend') /}
+            {param legendContent: getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.targetBranchException.checkbox.legend') /}
             {param fields: [[
                     'id': 'targetBranchExceptionEnabled',
-                    'labelText': getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.targetBranchException.checkbox.label'),
+                    'labelText': getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.targetBranchException.checkbox.label'),
                     'isChecked': $config['targetBranchExceptionEnabled']
                     ]] /}
         {/call}
@@ -80,14 +80,14 @@
             {param id: 'targetBranchExceptionRegex' /}
             {param value: $config['targetBranchExceptionRegex'] /}
             {param errorTexts: $errors ? $errors['targetBranchExceptionRegex'] : null /}
-            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.targetBranchExceptionRegex.desc')/}
+            {param descriptionText: getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.targetBranchExceptionRegex.desc')/}
         {/call}
 
         {call aui.form.checkboxField}
-            {param legendContent: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.usersException.checkbox.legend') /}
+            {param legendContent: getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.usersException.checkbox.legend') /}
             {param fields: [[
                     'id': 'usersExceptionEnabled',
-                    'labelText': getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.usersException.checkbox.label'),
+                    'labelText': getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.usersException.checkbox.label'),
                     'isChecked': $config['usersExceptionEnabled']
                     ]] /}
         {/call}
@@ -96,7 +96,7 @@
             {param id: 'usersExceptionGroups' /}
             {param value: $config['usersExceptionGroups'] /}
             {param errorTexts: $errors ? $errors['usersExceptionGroups'] : null /}
-            {param descriptionText: getText('io.asmild.solutions.atlassian.plugins.branchnameticketreferencemergecheck.usersExceptionGroups.desc')/}
+            {param descriptionText: getText('io.asmild.atlas.plugins.branchnameticketreferencemergecheck.usersExceptionGroups.desc')/}
 
         {/call}
 

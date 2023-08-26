@@ -194,7 +194,7 @@
 
                         <!-- Add package to export here -->
                         <Export-Package>
-                            io.asmild.solutions.atlassian.plugins.api,
+                            io.asmild.atlas.plugins.api,
                         </Export-Package>
 
                         <!-- Add package import here -->

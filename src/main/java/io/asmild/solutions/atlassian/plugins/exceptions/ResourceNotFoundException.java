@@ -1,4 +1,4 @@
-package io.asmild.solutions.atlassian.plugins.exceptions;
+package io.asmild.atlas.plugins.exceptions;
 
 import com.atlassian.sal.api.net.ResponseException;
 import com.atlassian.sal.api.net.Response;

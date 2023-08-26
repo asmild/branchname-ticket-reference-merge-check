@@ -1,4 +1,4 @@
-package io.asmild.solutions.atlassian.plugins.service;
+package io.asmild.atlas.plugins.service;
 
 import org.junit.Test;
 import org.junit.Assert;

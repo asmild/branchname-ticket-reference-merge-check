@@ -1,7 +1,7 @@
-package io.asmild.solutions.atlassian.plugins.megrecheck;
+package io.asmild.atlas.plugins.megrecheck;
 
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
-import io.asmild.solutions.atlassian.plugins.client.JiraAppLinkClient;
+import io.asmild.atlas.plugins.client.JiraAppLinkClient;
 import com.atlassian.bitbucket.hook.repository.RepositoryHookResult;
 import com.atlassian.bitbucket.hook.repository.PreRepositoryHookContext;
 import com.atlassian.bitbucket.hook.repository.PullRequestMergeHookRequest;
@@ -11,11 +11,11 @@ import com.atlassian.bitbucket.auth.AuthenticationContext;
 import com.atlassian.bitbucket.pull.PullRequest;
 import com.atlassian.bitbucket.repository.Ref;
 
-import io.asmild.solutions.atlassian.plugins.service.BranchNameValidator;
-import io.asmild.solutions.atlassian.plugins.service.JiraKeyValidator;
-import io.asmild.solutions.atlassian.plugins.service.TicketReference;
+import io.asmild.atlas.plugins.service.BranchNameValidator;
+import io.asmild.atlas.plugins.service.JiraKeyValidator;
+import io.asmild.atlas.plugins.service.TicketReference;
 
-import io.asmild.solutions.atlassian.plugins.service.UsersValidator;
+import io.asmild.atlas.plugins.service.UsersValidator;
 import org.springframework.stereotype.Component;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
