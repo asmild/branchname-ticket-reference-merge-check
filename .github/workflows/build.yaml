@@ -15,7 +15,7 @@ jobs:
       - name: Branch name
         run: echo Running on branch ${GITHUB_REF##*/}
       - name: Run atlas-compile
-        run: atlas-package
+        run: atlas-package -Dmaven.javadoc.skip=true
       - name: Locate target filws
         run: ls -l target
 
