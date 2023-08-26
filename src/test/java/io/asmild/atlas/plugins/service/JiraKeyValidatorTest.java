@@ -3,7 +3,6 @@ package io.asmild.atlas.plugins.service;
 import io.asmild.atlas.plugins.client.JiraAppLinkClient;
 import io.asmild.atlas.plugins.exceptions.ApplicationConnectionErrorException;
 import io.asmild.atlas.plugins.exceptions.JiraTicketNotFoundException;
-import io.asmild.atlas.plugins.models.JiraIssue;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
