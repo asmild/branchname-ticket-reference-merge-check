@@ -1,9 +1,8 @@
-package io.asmild.solutions.atlassian.plugins.service;
+package io.asmild.atlas.plugins.service;
 
-import io.asmild.solutions.atlassian.plugins.client.JiraAppLinkClient;
-import io.asmild.solutions.atlassian.plugins.exceptions.ApplicationConnectionErrorException;
-import io.asmild.solutions.atlassian.plugins.exceptions.JiraTicketNotFoundException;
-import io.asmild.solutions.atlassian.plugins.models.JiraIssue;
+import io.asmild.atlas.plugins.client.JiraAppLinkClient;
+import io.asmild.atlas.plugins.exceptions.ApplicationConnectionErrorException;
+import io.asmild.atlas.plugins.exceptions.JiraTicketNotFoundException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;

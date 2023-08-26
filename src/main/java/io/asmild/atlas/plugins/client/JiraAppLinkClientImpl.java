@@ -1,4 +1,4 @@
-package io.asmild.solutions.atlassian.plugins.client;
+package io.asmild.atlas.plugins.client;
 
 import com.atlassian.applinks.api.ApplicationLink;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
@@ -15,10 +15,10 @@ import com.atlassian.sal.api.net.Request;
 import com.atlassian.sal.api.net.Response;
 import com.atlassian.sal.api.net.ResponseException;
 
-import io.asmild.solutions.atlassian.plugins.exceptions.ApplicationLinkNotConfiguredException;
-import io.asmild.solutions.atlassian.plugins.exceptions.ApplicationConnectionErrorException;
-import io.asmild.solutions.atlassian.plugins.exceptions.ResourceNotFoundException;
-import io.asmild.solutions.atlassian.plugins.exceptions.JiraTicketNotFoundException;
+import io.asmild.atlas.plugins.exceptions.ApplicationLinkNotConfiguredException;
+import io.asmild.atlas.plugins.exceptions.ApplicationConnectionErrorException;
+import io.asmild.atlas.plugins.exceptions.ResourceNotFoundException;
+import io.asmild.atlas.plugins.exceptions.JiraTicketNotFoundException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

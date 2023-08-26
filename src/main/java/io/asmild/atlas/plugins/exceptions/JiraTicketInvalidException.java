@@ -1,4 +1,4 @@
-package io.asmild.solutions.atlassian.plugins.exceptions;
+package io.asmild.atlas.plugins.exceptions;
 
 public class JiraTicketInvalidException extends Exception {
     public JiraTicketInvalidException(String message) {

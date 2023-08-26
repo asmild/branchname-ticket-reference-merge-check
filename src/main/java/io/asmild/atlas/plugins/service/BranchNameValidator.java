@@ -1,4 +1,4 @@
-package io.asmild.solutions.atlassian.plugins.service;
+package io.asmild.atlas.plugins.service;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,4 +1,4 @@
-package io.asmild.solutions.atlassian.plugins.models;
+package io.asmild.atlas.plugins.models;
 
 import com.google.gson.Gson;
 
