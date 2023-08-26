@@ -16,10 +16,7 @@ jobs:
         run: echo Running on branch ${GITHUB_REF##*/}
 #      - name: Run atlas-compile
 #        run: atlas-package -Dmaven.javadoc.skip=true
-      - name: Locate target filws
-        run: ls -l target
-
-      - name: Publish to GitHub Packages
+      - name: Build and publish to GitHub Packages
         run: mvn --batch-mode -Dmaven.javadoc.skip=true -DuseGitHubPackages=true deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
