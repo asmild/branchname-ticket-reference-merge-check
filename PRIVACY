@@ -1,0 +1,12 @@
+## Security and Privacy Notes
+### Data Privacy:
+This plugin, "Branchname Jira Key Merge-check for Bitbucket," respects your privacy and the confidentiality of your data. It does not collect, store, or transmit any personal or sensitive information from your Bitbucket repositories.
+
+### Data Access:
+The plugin requires access to your repository's branch and pull request data solely for the purpose of validating Jira keys in branch names during the merge process. It does not access any other information in your repository.
+
+### Data Storage:
+No data from your repositories is stored or cached by the plugin. All validation checks are performed in real-time during the merge process and do not leave a trace within the plugin.
+
+### Third-Party Integration:
+The plugin communicates with Jira instances to verify Jira keys in branch names. No user credentials or sensitive data are stored, cached, or shared with any third-party service.
